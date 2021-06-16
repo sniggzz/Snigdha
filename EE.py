@@ -1,4 +1,4 @@
-from questions import quiz
+from questions.quiz import quiz
 
 
 def check_ans(question, ans, attempts, score):
