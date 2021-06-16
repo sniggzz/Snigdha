@@ -1,12 +1,12 @@
-from questions.quiz import quiz
+from questions import quiz
 
 
-def check_ans(question, ans, attempts, score):
+def check_ans(question_id, ans, attempts, score):
     """
     Takes the arguments, and confirms if the answer provided by user is correct.
     Converts all answers to lower case to make sure the quiz is not case sensitive.
     """
-    if quiz[question]['answer'].lower() == ans.lower():
+    if quiz[question_id]['answer'].lower() == ans.lower():
         print(f"Correct Answer! \nYour score is {score + 1}!")
         return True
     else:
@@ -35,14 +35,14 @@ def intro_message():
 intro = intro_message()
 while True:
     score = 0
-    for questions in quiz:
+    for question_id,question in quiz.items():
         attempts = 3
         while attempts > 0:
-            print(quiz[question]['question'])
+            print(question["question"])
             answer = input("Enter Answer (To move to the next question, type 'skip') : ")
             if answer == "skip":
                 break
-            check = check_ans(question, answer, attempts, score)
+            check = check_ans(question_id, answer, attempts, score)
             if check:
                 score += 1
                 break
